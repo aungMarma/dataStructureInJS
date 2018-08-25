@@ -9,30 +9,16 @@ class SinglyLinkedList{
 		if(!this.length){   // or !this.head
 			this.head = this.tail = newNode;
 		}else{
-			// establish the connection, tail node points to new node
 			this.tail.next = newNode;
-			// update the tail, new node is the tail node now, we got new tail node
 			this.tail = newNode;
 		}
 		this.length++;
 		return this; 
 	}
-	// addToHead
-	addToHead(node){
-		this.length++;
-		if(!this.length){
-			this.head = this.tail = node;
-		}else{
-			// point to the head node, update the head
-			node.next = this.head;
-			this.head = node;
-		}
-	}
-	/*
 	// my approach
 	// remove from the tail
 	pop(){
-		// must be only one node
+		// nothing to remove
 		if(this.head === null){
 			return;
 		}
@@ -56,20 +42,17 @@ class SinglyLinkedList{
 				tempNode = tempNode.next;
 			}
 		}
-	}*/
+	}
 	// colt's approach
-	pop(){
+	popAnotherWay(){
 		if(!this.head){
 			return;
 		}else{
+			let current = this.head;
 			if(this.head === this.tail){
-				let re = this.head;
 				this.head = this.tail = null;
-				this.length--;
 			}else{
 				let prev = this.head;
-				let current = this.head;
-
 				// current stops at current.next ==== null;
 				// and prev stops at current
 				while(current.next){
@@ -78,9 +61,9 @@ class SinglyLinkedList{
 				}
 				this.tail = prev;
 				this.tail.next = null;
-				this.length--;
-				return current;
 			}
+			this.length--;
+			return current;
 		}
 	}
 	printEachNode(){
@@ -96,18 +79,27 @@ class SinglyLinkedList{
 		if(!this.head){
 			return;
 		}else{
+			let re = this.head;
 		   if(this.head === this.tail){
-		   		let re = this.head;
 		   		this.head = this.tail = null;
-		   		this.length--;
-		   		return re;
 		   }else{
-		   		let re = this.head;
 		   		this.head = this.head.next
-		   		this.length--;
-		   		return re;
 		   }
+		   this.length--;
+		   return re;
 		}
+	}
+	// add a node to the head
+	unshift(val){
+		let newNode = new Node(val);
+		if(!this.head){
+			this.head = this.tail = newNode;
+		}else{
+			newNode.next = this.head;
+			this.head = newNode;
+		}
+		this.length++;
+		return this;
 	}
 }
 
@@ -117,10 +109,3 @@ class Node{
 		this.value = value;
 	}
 }
-/*
-let head = new Node(1);
-head.next = new Node(2);
-head.next.next = new Node(3);
-head.next.next.next = new Node(4);
-head.next.next.next.next= new Node(5);
-*/
