@@ -64,10 +64,10 @@ class SinglyLinkedList{
 	// print each node
 	printEachNode(){
 		let tempNode = this.head;
-		console.log(tempNode);
+		console.log(tempNode.value);
 		while(tempNode.next){
 			tempNode = tempNode.next;
-			console.log(tempNode);
+			console.log(tempNode.value);
 		}
 	}
 	// remove a node from the head
@@ -145,6 +145,52 @@ class SinglyLinkedList{
 		this.length++;
 		return true;
     }
+    // remove a node at a specific index
+    remove(index){
+    	if(index < 0 || index >= this.length){
+    		return null;
+    	}
+    	if(index === 0){
+    		let removedNode = this.head;
+    		this.shift();
+    		return removedNode;
+
+    	}
+    	if(this.length - 1 === index){
+    		let removedNode = this.tail;
+    		this.pop();
+    		return removedNode;
+    	}
+    	let leftNode = this.get(index  - 1);
+    	let removedNode = leftNode.next;
+    	leftNode.next = removedNode.next;
+    	this.length--;
+    	return removedNode;
+    }
+    // reverse the list
+    reverse(){
+		// let current = this.head;
+
+		// swap head and tail
+    	let tempTail = this.tail;
+    	this.tail = this.head;
+    	this.head = tempTail;
+
+    	// hold next node, prev node, update current
+    	let current = this.tail;
+		let tempNext = current.next;
+		current.next = null;
+		let prev = current;     // save current before moving to next
+		current = tempNext;
+
+		while(current){
+			// move to next node
+	    	tempNext = current.next;
+	    	current.next = prev;
+	    	prev = current;
+			current = tempNext;
+		}
+	}
 }
 
 class Node{
@@ -153,3 +199,20 @@ class Node{
 		this.value = value;
 	}
 }
+
+let list = new SinglyLinkedList();
+list.push(1).push(2).push(3);
+list.printEachNode();
+
+console.log("========REVERSED=========");
+list.reverse();
+list.printEachNode();
+
+
+
+
+
+
+
+
+
