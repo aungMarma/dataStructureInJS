@@ -189,9 +189,33 @@ class SinglyLinkedList{
 	    	prev = current;
 			current = tempNext;
 		}
-
 		return this;
 	}
+	rotate(n){
+        if(n > this.length){
+            n = n % this.length;
+        }
+        if(n < 0){
+            n = this.length - ( -1 * n);
+        }
+        if(n === 0 || n === this.length){
+            return this;
+        }
+        let m = 1;
+        let left = this.head;
+        let tempHead = this.head;
+        while(n !== m){
+            left = left.next;
+            m++;
+        }
+        
+        let right = left.next;
+        left.next = null;        // cut the connection
+        this.head = right;       // move the head
+        this.tail.next = tempHead;         // join the tail to the previous head
+        this.tail = left;                  // move the tail
+        return this;
+    }
 }
 
 class Node{
