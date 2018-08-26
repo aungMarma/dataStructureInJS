@@ -169,8 +169,7 @@ class SinglyLinkedList{
     }
     // reverse the list
     reverse(){
-		// let current = this.head;
-
+		
 		// swap head and tail
     	let tempTail = this.tail;
     	this.tail = this.head;
@@ -190,6 +189,8 @@ class SinglyLinkedList{
 	    	prev = current;
 			current = tempNext;
 		}
+
+		return this;
 	}
 }
 
