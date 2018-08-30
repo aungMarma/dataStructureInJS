@@ -225,14 +225,9 @@ class Node{
 	}
 }
 
-let list = new SinglyLinkedList();
-list.push(1).push(2).push(3);
-list.printEachNode();
-
-console.log("========REVERSED=========");
-list.reverse();
-list.printEachNode();
-
+module.exports = {
+	Node,
+}
 
 
 
