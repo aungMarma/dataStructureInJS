@@ -6,41 +6,42 @@ class Node{
 	}
 }
 class Stack{
+
+	// first is the head, last is the tail if compared to the linkedList
 	constructor(){
-		// last points to the last node added on
-		// first points to the first node that was added to the stack
 		this.last = this.first = null;
 		this.size = 0;
 	}
-	push(val){   // add to head O(1), instead of to the tail O(n)
+
+	// add to the head
+	push(val){
 		let newNode = new Node(val);
 		if(!this.size){
 			this.first = this.last = newNode;
 			return ++this.size;
 		}
 		// added to the last/head,
-		newNode.next = this.last;
-		this.last = newNode;
+		newNode.next = this.first;
+		this.first= newNode;
 		return ++this.size;
 	}
-	pop(){   // remove from the head/last
+
+	// remove from the head/last
+	pop(){
 		if(!this.size){
 			return null;
 		}
 		if(this.size === 1){
-			let rNode = this.last;
+			let rNode = this.first;
 			this.last = this.first = null;
 			this.size--;
 			return rNode.value;
 		}
 
-		let rNode = this.last;
-		this.last = this.last.next;
+		let rNode = this.first;
+		this.first = this.first.next;
 		this.size--;
 		return rNode.value;
-	}
-	size(){
-		return this.size;
 	}
 }
 
