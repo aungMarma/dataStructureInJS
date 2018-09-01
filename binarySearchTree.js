@@ -65,7 +65,10 @@ class BST{
 		}
 	}
 	find(value, node = this.root){
-		if(node.value === value){
+		if(!node){  // no root
+			return false;
+		}
+		if(value === node.value){
 			return true;
 		}
 		if(value < node.value){
@@ -82,6 +85,24 @@ class BST{
 		}
 		return this.find(value, node);
 	}
+	findIteratively(value){
+		if(!this.root){
+			return false;
+		}
+		let current = this.root;
+		while(current){
+			if(current.value === value){
+				return true;
+			}
+			// go left
+			if(value < current.value){
+				current = current.left;
+			}
+			// go right
+			current = current.right
+		}
+		return false;
+	}
 }
 
 let bst = new BST();
@@ -94,9 +115,11 @@ bst.insert(25);
 bst.insert(12);
 console.log(bst.find(25));
 console.log(bst.find(100));
+console.log(bst.findIteratively(25));
+console.log(bst.findIteratively(100));
 /*
-        	10
-	5				15
-1     8			12		25				
+        		10
+	5						15
+1     	8				12		25				
 */
 
