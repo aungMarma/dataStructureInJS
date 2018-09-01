@@ -16,7 +16,6 @@ class BST{
 			this.root = node;
 			return this;
 		}
-
 		// recursively
 		function insertRecursively(root, node){
 			if(node.value === root.value){
@@ -38,9 +37,13 @@ class BST{
 			return  insertRecursively(root.right, node);
 		}
 		return insertRecursively(this.root, node);
-
-		/*
-		// iteratively
+	}
+	insertIteratively(value){
+		let node = new Node(value);
+		if(!this.root){
+			this.root = node;
+			return this;
+		}
 		let current = this.root;
 		while(true){
 			if(node.value === current.value){
@@ -60,7 +63,24 @@ class BST{
 				current = current.right;
 			}
 		}
-		*/
+	}
+	find(value, node = this.root){
+		if(node.value === value){
+			return true;
+		}
+		if(value < node.value){
+			if(!node.left){  // no node to keep searching
+				return false;
+			}
+			node = node.left;
+		}
+		if(value > node.value){
+			if(!node.right){  // no node to keep searching
+				return false;
+			}
+			node = node.right;
+		}
+		return this.find(value, node);
 	}
 }
 
@@ -72,6 +92,8 @@ bst.insert(8);
 bst.insert(15);
 bst.insert(25);
 bst.insert(12);
+console.log(bst.find(25));
+console.log(bst.find(100));
 /*
         	10
 	5				15
