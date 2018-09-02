@@ -105,21 +105,21 @@ class BST{
 	}
 }
 
-let bst = new BST();
-bst.insert(10);
-bst.insert(5);
-bst.insert(1);
-bst.insert(8);
-bst.insert(15);
-bst.insert(25);
-bst.insert(12);
-console.log(bst.find(25));
-console.log(bst.find(100));
-console.log(bst.findIteratively(25));
-console.log(bst.findIteratively(100));
-/*
-        		10
-	5						15
-1     	8				12		25				
-*/
+// let bst = new BST();
+// bst.insert(10);
+// bst.insert(5);
+// bst.insert(1);
+// bst.insert(8);
+// bst.insert(15);
+// bst.insert(25);
+// bst.insert(12);
+// console.log(bst.find(25));
+// console.log(bst.find(100));
+// console.log(bst.findIteratively(25));
+// console.log(bst.findIteratively(100));
+
+module.exports = {
+	Node,
+	BST,
+}
 
