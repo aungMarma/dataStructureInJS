@@ -47,11 +47,12 @@ let q = new Queue();
 q.enqueue("First");
 q.enqueue("Second");
 q.enqueue("Third");
-console.log(q);
-console.log(q.dequeue());
-console.log(q.dequeue());
-console.log(q.dequeue());
-console.log(q.dequeue());
+// console.log(q);
+// console.log(q.dequeue());
+// console.log(q.dequeue());
+// console.log(q.dequeue());
+// console.log(q.dequeue());
+
 
 
 
