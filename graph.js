@@ -40,20 +40,76 @@ class Grap{
 			delete this.adjacencyList[vertex];
 		}
 	}
+	dfs(vertex, result = [], visited = {}){
+		if(!this.adjacencyList[vertex]){
+			return;
+		}
+		let edges = this.adjacencyList[vertex];
+		// nowhere to go
+		if(!edges.length){
+			return;
+		}
+		result.push(vertex);
+		visited[vertex] = true;
+		edges.forEach( neighbor => {
+			if(!visited[neighbor]){
+				this.dfs(neighbor, result, visited);
+			}
+		})
+		return result;
+	}
+	dfsIterative(vertex){
+		if(!this.adjacencyList[vertex] || !this.adjacencyList[vertex].length){
+			return;
+		}
+		let stack = [vertex];    // process last in
+		let visited = {};
+		let result = [];
+		visited[vertex] = true;
+		let currentVertex;
+		while(stack.length){
+			currentVertex = stack.pop();
+			result.push(currentVertex);
+			this.adjacencyList[currentVertex].forEach( neighbor => {
+				if(!visited[neighbor]){
+					visited[neighbor] = true;
+					stack.push(neighbor);
+				}
+			})
+		}
+		return result;
+	}
 }
 
 let graph = new Grap();
 graph.addVertex("A");
 graph.addVertex("B");
 graph.addVertex("C");
+graph.addVertex("D");
+graph.addVertex("E");
+graph.addVertex("F");
 graph.addEdge("A", "B");
 graph.addEdge("A", "C");
-graph.addEdge("C", "B");
+graph.addEdge("B", "D");
+graph.addEdge("C", "E");
+graph.addEdge("D", "E");
+graph.addEdge("D", "F");
+graph.addEdge("E", "F");
 console.log(graph.adjacencyList);
-graph.removeEdge("A", "B");
-console.log(graph.adjacencyList);
-graph.removeVertex("C");
-console.log(graph.adjacencyList);
+// graph.removeEdge("A", "B");
+// console.log(graph.adjacencyList);
+// graph.removeVertex("C");
+// console.log(graph.adjacencyList);
+let resultStartA = graph.dfs("A");
+let resultStartB = graph.dfs("B");
+let resultStartE = graph.dfs("E");
+console.log(resultStartA);
+console.log(resultStartB);
+console.log(resultStartE);
+
+let dfsIterativeA = graph.dfsIterative("A");
+console.log(dfsIterativeA);
+
 
 
 
